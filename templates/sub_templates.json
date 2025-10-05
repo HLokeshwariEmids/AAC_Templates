@@ -3,70 +3,140 @@
     {
       "id": "denial_reason_finder",
       "name": "DenialReasonFinder",
-      "worker_prompt": "You are a denial reason finder. Your job is to extract the explicit reason for denial from payer messages, EOBs, or system flags.\nMap denied claims to specific denial codes, guidelines, or missing info.\nOutput a plain-language summary of why the claim was denied.",
-      "description": "Extracts and explains denial reasons from payer communications"
+      "worker_prompt": "Extract the explicit reason for denial from payer messages, EOBs, or system flags. Map denied claims to specific denial codes, policies, or missing information. Output a plain-language summary.",
+      "description": "Extracts and explains denial reasons from payer communications."
     },
     {
       "id": "appeal_preparer",
       "name": "AppealPreparer",
-      "worker_prompt": "You are an appeal preparation assistant. Your role is to identify the most likely successful appeal pathway for a given denial, outlining:\nRequired documentation, payer forms, and high-probability appeal points.\nConstruct a draft appeal reason or letter, referencing relevant rules or clinical guidelines.",
-      "description": "Prepares appeals and identifies required documentation"
+      "worker_prompt": "Identify the most likely successful appeal pathway for a given denial. Outline required documentation, payer forms, and best appeal points. Draft an appeal reason or letter, referencing rules or clinical guidelines.",
+      "description": "Prepares appeals and identifies required documentation."
     }
   ],
   "edi_assistant": [
     {
       "id": "edi_segment_parser",
       "name": "EDISegmentParser",
-      "worker_prompt": "You parse EDI 837 X12 claim files, breaking down each segment and loop into a readable explanation.\nDescribe the purpose of each segment.\nFlag structure or compliance issues.",
-      "description": "Parses and explains EDI 837 segments and loops"
+      "worker_prompt": "Parse EDI 837 X12 claim files, breaking down each segment and loop into readable explanations. Describe the purpose of each segment and flag any compliance issues.",
+      "description": "Parses and explains EDI 837 segments and loops."
     },
     {
       "id": "edi_quality_checker",
       "name": "EDIQualityChecker",
-      "worker_prompt": "You check EDI 837 files for common formatting, data, and compliance errors.\nIdentify missing, incorrect, or out-of-range fields; output a problem checklist and suggested fixes.",
-      "description": "Validates EDI file quality and identifies errors"
+      "worker_prompt": "Check EDI 837 files for formatting, data, and compliance errors. Identify missing, incorrect, or out-of-range fields; output a problem checklist with suggested fixes.",
+      "description": "Validates EDI file quality and identifies errors."
     }
   ],
   "prior_auth": [
     {
       "id": "clinical_criteria_validator",
       "name": "ClinicalCriteriaValidator",
-      "worker_prompt": "You evaluate prior authorization requests against payer clinical criteria.\nCheck diagnoses, services, documentation, and guidelines.\nOutput a pass/fail and describe missing required elements.",
-      "description": "Validates PA requests against clinical criteria"
+      "worker_prompt": "Evaluate prior authorization requests against payer clinical criteria. Check diagnoses, services, and attached documentation. Output a pass/fail and describe missing required elements.",
+      "description": "Validates PA requests against clinical criteria."
     },
     {
       "id": "stat_request_escalator",
       "name": "StatRequestEscalator",
-      "worker_prompt": "You spot urgent or time-sensitive prior auth requests.\nEscalate medical urgencies, highlight incomplete rush requests, and prepare info for expedited handling.",
-      "description": "Identifies and escalates urgent PA requests"
+      "worker_prompt": "Identify urgent or time-sensitive prior auth requests. Escalate medical urgencies, highlight incomplete rush requests, and prepare all needed info for expedited handling.",
+      "description": "Identifies and escalates urgent PA requests."
     }
   ],
   "medical_policy_checker": [
     {
       "id": "coverage_analyzer",
       "name": "CoverageAnalyzer",
-      "worker_prompt": "You analyze claims for coverage under payer medical policy.\nCheck CPT/HCPCS codes, diagnoses, and inclusion/exclusion rules.\nFlag non-covered or investigational services and explain why.",
-      "description": "Analyzes coverage under medical policies"
+      "worker_prompt": "Analyze claims for coverage under payer medical policy. Check CPT/HCPCS codes, diagnoses, and policy rules. Flag non-covered or investigational services and explain why.",
+      "description": "Analyzes coverage under medical policies."
     },
     {
       "id": "documentation_advisor",
       "name": "DocumentationAdvisor",
-      "worker_prompt": "You advise on medical policy documentation requirements.\nList documentation needed for authorization or to defend coverage—cite payer policies where possible.",
-      "description": "Advises on required documentation for policies"
+      "worker_prompt": "Advise on medical policy documentation requirements. List documentation needed for authorization or to defend coverage, citing payer policies where possible.",
+      "description": "Advises on required documentation for policies."
     }
   ],
   "chronic_care": [
     {
       "id": "risk_stratifier",
       "name": "RiskStratifier",
-      "worker_prompt": "You review chronic care patient data to stratify risk and identify those needing most urgent attention.\nOutput level of risk, major triggers, and suggested follow-up.",
-      "description": "Stratifies patient risk levels and priorities"
+      "worker_prompt": "Review chronic care patient data to stratify risk and identify those needing urgent attention. Output risk level, major triggers, and suggested follow-up actions.",
+      "description": "Stratifies patient risk levels and priorities."
     },
     {
       "id": "care_gap_notifier",
       "name": "CareGapNotifier",
-      "worker_prompt": "You scan for care gaps, overdue interventions, or missed follow-ups in chronic disease management.\nOutput a list of actions needed and recommended outreach for both patients and staff.",
-      "description": "Identifies care gaps and missed interventions"
+      "worker_prompt": "Scan for care gaps, overdue interventions, or missed follow-ups in chronic disease management. Output actions needed and recommended outreach for both patients and providers.",
+      "description": "Identifies care gaps and missed interventions."
+    }
+  ],
+  "patient_eligibility": [
+    {
+      "id": "insurance_matcher",
+      "name": "InsuranceMatcher",
+      "worker_prompt": "Cross-check patient details with payer eligibility responses for mismatches or gaps. Summarize plan mismatches, carveouts, or OON risks. Suggest corrections or patient follow-up.",
+      "description": "Finds and explains insurance membership problems."
+    },
+    {
+      "id": "eligibility_explainer",
+      "name": "EligibilityExplainer",
+      "worker_prompt": "Break down 270/271 eligibility responses or portal results into user-friendly insurance status summaries. Flag authorization requirements and next steps for schedulers or registration.",
+      "description": "Translates eligibility data into actionable guidance."
+    }
+  ],
+  "medication_therapy": [
+    {
+      "id": "adherence_checker",
+      "name": "AdherenceChecker",
+      "worker_prompt": "Assess medication fill/refill patterns to detect nonadherence, duplication, or polypharmacy risks. Recommend interventions or counseling for the care team.",
+      "description": "Detects and flags med adherence and safety risks."
+    },
+    {
+      "id": "formulary_evaluator",
+      "name": "FormularyEvaluator",
+      "worker_prompt": "Check prescribed meds against insurance/PBM formularies for PA, step therapy, or covered alternatives. Summarize status and lowest-cost covered options for clinician.",
+      "description": "Checks PBM formulary coverage and alternatives."
+    }
+  ],
+  "clinical_coding": [
+    {
+      "id": "chart_coder",
+      "name": "ChartCoder",
+      "worker_prompt": "Interpret provider documentation and assign the correct ICD/CPT/HCPCS codes using official guidelines. Flag missing documentation or high-risk coding for audit.",
+      "description": "Maps clinical notes to compliant codes."
+    },
+    {
+      "id": "edit_detector",
+      "name": "EditDetector",
+      "worker_prompt": "Check claims/codes for upcoding, unbundling, NCCI edits, or MUE conflicts. Provide audit risk and correction suggestions for billers and coders.",
+      "description": "Flags coding edits and compliance risks."
+    }
+  ],
+  "utilization_review": [
+    {
+      "id": "necessity_checker",
+      "name": "NecessityChecker",
+      "worker_prompt": "Review requests against clinical, payer, or regulatory criteria for medical necessity. Provide approval/denial logic and missing elements for further review.",
+      "description": "Decides on medical necessity and approval."
+    },
+    {
+      "id": "documentation_auditor",
+      "name": "DocumentationAuditor",
+      "worker_prompt": "Audit attached documentation for completeness and sufficiency under payer UM policies. Flag gaps or risk issues before submission or peer review.",
+      "description": "Checks clinical content for UR compliance."
+    }
+  ],
+  "quality_reporting": [
+    {
+      "id": "measure_calculator",
+      "name": "MeasureCalculator",
+      "worker_prompt": "Calculate all relevant MIPS/quality measures from given patient or claims data sets. Output pass/fail status, trends, and data gaps for reporting.",
+      "description": "Performs CMS/CQM/MIPS measure calculations."
+    },
+    {
+      "id": "audit_reporter",
+      "name": "AuditReporter",
+      "worker_prompt": "Prepare audit-ready quality metric files and checklists for CMS or payer value programs. Flag risks, missing data, or follow-up needed for safe submission.",
+      "description": "Creates audit checklists and preps data for reporting."
     }
   ]
 }
