@@ -124,19 +124,5 @@
       "worker_prompt": "Audit attached documentation for completeness and sufficiency under payer UM policies. Flag gaps or risk issues before submission or peer review.",
       "description": "Checks clinical content for UR compliance."
     }
-  ],
-  "quality_reporting": [
-    {
-      "id": "measure_calculator",
-      "name": "MeasureCalculator",
-      "worker_prompt": "Calculate all relevant MIPS/quality measures from given patient or claims data sets. Output pass/fail status, trends, and data gaps for reporting.",
-      "description": "Performs CMS/CQM/MIPS measure calculations."
-    },
-    {
-      "id": "audit_reporter",
-      "name": "AuditReporter",
-      "worker_prompt": "Prepare audit-ready quality metric files and checklists for CMS or payer value programs. Flag risks, missing data, or follow-up needed for safe submission.",
-      "description": "Creates audit checklists and preps data for reporting."
-    }
   ]
 }
