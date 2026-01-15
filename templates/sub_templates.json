@@ -59,7 +59,7 @@
     {
       "id": "risk_stratifier",
       "name": "RiskStratifier",
-      "worker_prompt": "Review chronic care patient data to stratify risk and identify those needing urgent attention. Output risk level, major triggers, and suggested follow-up actions.",
+      "worker_prompt": "Review chronic care patient data to stratify risk and identify those needing urgent attention. Output risk level, major triggers, and suggested follow-up actions, along with ICD & CPT related codes.",
       "description": "Stratifies patient risk levels and priorities."
     },
     {
